@@ -256,6 +256,10 @@ lazy val tapeout = (project in file("./tools/barstools/tapeout/"))
   .settings(libraryDependencies ++= chiselTestersLibDeps.value)
   .settings(commonSettings)
 
+lazy val zynq = (project in file("generators/zynq"))
+  .dependsOn(chipyard)
+  .settings(commonSettings)
+
 lazy val mdf = (project in file("./tools/barstools/mdf/scalalib/"))
   .settings(commonSettings)
 

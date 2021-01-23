@@ -130,6 +130,13 @@ class WithTracerVBridge extends ComposeHarnessBinder({
   }
 })
 
+class WithGenericTraceBridge extends ComposeHarnessBinder({
+  (system: CanHaveGenericTraceIOModuleImp, th: FireSim, ports: Seq[GenericTraceOutputTop]) => {
+    ports.map { p => p.generic_traces.map(tileTrace => TracerVBridge(tileTrace)(system.p)) }
+    Nil
+  }
+})
+
 class WithDromajoBridge extends ComposeHarnessBinder({
   (system: CanHaveTraceIOModuleImp, th: FireSim, ports: Seq[TraceOutputTop]) =>
     ports.map { p => p.traces.map(tileTrace => DromajoBridge(tileTrace)(system.p)) }; Nil

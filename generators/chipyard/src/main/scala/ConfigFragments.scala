@@ -273,3 +273,10 @@ class WithControlBusFrequency(freqMHz: Double) extends Config((site, here, up) =
 
 class WithRationalMemoryBusCrossing extends WithSbusToMbusCrossingType(RationalCrossing(Symmetric))
 class WithAsynchrousMemoryBusCrossing extends WithSbusToMbusCrossingType(AsynchronousCrossing())
+
+class WithGenericTraceIO extends Config((site, here, up) => {
+  case BoomTilesKey => up(BoomTilesKey) map (tile => tile.copy(genericTrace = true))
+  case GenericTracePortKey => Some(GenericTracePortParams())
+})
+
+
