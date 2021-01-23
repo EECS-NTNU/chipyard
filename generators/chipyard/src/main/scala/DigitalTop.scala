@@ -13,6 +13,7 @@ import freechips.rocketchip.devices.tilelink._
 
 // DOC include start: DigitalTop
 class DigitalTop(implicit p: Parameters) extends System
+  with testchipip.CanHaveGenericTraceIO // Enables optionally adding hardware sampling trace IO
   with testchipip.CanHaveTraceIO // Enables optionally adding trace IO
   with testchipip.CanHaveBackingScratchpad // Enables optionally adding a backing scratchpad
   with testchipip.CanHavePeripheryBlockDevice // Enables optionally adding the block device
@@ -31,6 +32,7 @@ class DigitalTop(implicit p: Parameters) extends System
 }
 
 class DigitalTopModule[+L <: DigitalTop](l: L) extends SystemModule(l)
+  with testchipip.CanHaveGenericTraceIOModuleImp
   with testchipip.CanHaveTraceIOModuleImp
   with testchipip.CanHavePeripheryBlockDeviceModuleImp
   with testchipip.CanHavePeripherySerialModuleImp

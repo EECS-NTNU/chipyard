@@ -1,27 +1,26 @@
 package firesim.firesim
 
 import java.io.File
-
 import chisel3._
-import chisel3.util.{log2Up}
-import freechips.rocketchip.config.{Parameters, Config}
+import chisel3.util.log2Up
+import freechips.rocketchip.config.{Config, Parameters}
 import freechips.rocketchip.groundtest.TraceGenParams
 import freechips.rocketchip.tile._
 import freechips.rocketchip.tilelink._
 import freechips.rocketchip.rocket.DCacheParams
 import freechips.rocketchip.subsystem._
 import freechips.rocketchip.devices.tilelink.BootROMParams
-import freechips.rocketchip.devices.debug.{DebugModuleParams, DebugModuleKey}
+import freechips.rocketchip.devices.debug.{DebugModuleKey, DebugModuleParams}
 import freechips.rocketchip.diplomacy.LazyModule
-import boom.common.BoomTilesKey
-import testchipip.{BlockDeviceKey, BlockDeviceConfig, SerialKey, TracePortKey, TracePortParams}
+import boom.common.{BoomTilesKey, WithBoomDebugPrintf}
+import testchipip.{BlockDeviceConfig, BlockDeviceKey, SerialKey, TracePortKey, TracePortParams}
 import sifive.blocks.devices.uart.{PeripheryUARTKey, UARTParams}
-import scala.math.{min, max}
+
+import scala.math.{max, min}
 import tracegen.TraceGenKey
 import icenet._
 import ariane.ArianeTilesKey
 import testchipip.WithRingSystemBus
-
 import firesim.bridges._
 import firesim.configs._
 import chipyard.config.ConfigValName._
@@ -85,6 +84,7 @@ class WithFireSimConfigTweaks extends Config(
   new WithoutTLMonitors ++
   // Optional: Adds IO to attach tracerV bridges
   new chipyard.config.WithTraceIO ++
+  new chipyard.config.WithGenericTraceIO ++
   // Optional: Request 16 GiB of target-DRAM by default (can safely request up to 32 GiB on F1)
   new freechips.rocketchip.subsystem.WithExtMemSize((1 << 30) * 16L) ++
   // Required: Adds IO to attach SerialBridge. The SerialBridges is responsible
@@ -127,13 +127,82 @@ class FireSimQuadRocketConfig extends Config(
 
 
 //*****************************************************************
+// Boom config, base off chipyard's SmallBoomConfig
+//*****************************************************************
+class FireSimDebugSmallBoomConfig extends Config(
+  new WithBoomDebugPrintf ++
+    new WithDefaultFireSimBridges ++
+    new WithGenericTraceBridge ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.SmallBoomConfig)
+
+//*****************************************************************
+// Boom config, base off chipyard's SmallBoomConfig
+//*****************************************************************
+class FireSimSmallBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.SmallBoomConfig)
+
+//*****************************************************************
+// Boom config, base off chipyard's MediumBoomConfig
+//*****************************************************************
+class FireSimDebugMediumBoomConfig extends Config(
+  new WithBoomDebugPrintf ++
+    new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.MediumBoomConfig)
+
+//*****************************************************************
+// Boom config, base off chipyard's MediumBoomConfig
+//*****************************************************************
+class FireSimMediumBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.MediumBoomConfig)
+
+///*****************************************************************
+// Boom config, base off chipyard's LargeBoomConfig
+//*****************************************************************
+class FireSimDebugLargeBoomConfig extends Config(
+    new WithBoomDebugPrintf ++
+      new WithDefaultFireSimBridges ++
+      new WithDefaultMemModel ++
+      new WithFireSimConfigTweaks ++
+      new chipyard.LargeBoomConfig)
+
+
+///*****************************************************************
 // Boom config, base off chipyard's LargeBoomConfig
 //*****************************************************************
 class FireSimLargeBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
-  new WithDefaultMemModel ++
-  new WithFireSimConfigTweaks ++
-  new chipyard.LargeBoomConfig)
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.LargeBoomConfig)
+
+//*****************************************************************
+// Boom config, base off chipyard's MegaBoomConfig
+//*****************************************************************
+class FireSimDebugMegaBoomConfig extends Config(
+  new WithBoomDebugPrintf ++
+    new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.MegaBoomConfig)
+
+//*****************************************************************
+// Boom config, base off chipyard's MegaBoomConfig
+//*****************************************************************
+class FireSimMegaBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.MegaBoomConfig)
 
 //********************************************************************
 // Heterogeneous config, base off chipyard's LargeBoomAndRocketConfig

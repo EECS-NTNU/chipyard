@@ -147,6 +147,11 @@ class WithControlCore extends Config((site, here, up) => {
   case MaxHartIdBits => log2Up(up(RocketTilesKey, site).size + up(BoomTilesKey, site).size + 1)
 })
 
+class WithGenericTraceIO extends Config((site, here, up) => {
+  case BoomTilesKey => up(BoomTilesKey) map (tile => tile.copy(genericTrace = true))
+  case GenericTracePortKey => Some(GenericTracePortParams())
+})
+
 class WithTraceIO extends Config((site, here, up) => {
   case BoomTilesKey => up(BoomTilesKey) map (tile => tile.copy(trace = true))
   case ArianeTilesKey => up(ArianeTilesKey) map (tile => tile.copy(trace = true))

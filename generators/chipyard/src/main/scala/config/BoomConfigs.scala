@@ -21,6 +21,8 @@ class SmallBoomConfig extends Config(
   new freechips.rocketchip.subsystem.WithInclusiveCache ++       // use Sifive L2 cache
   new freechips.rocketchip.subsystem.WithNExtTopInterrupts(0) ++ // no external interrupts
   new boom.common.WithSmallBooms ++                              // small boom config
+  new boom.common.WithSmallBooms ++                              // small boom config
+  new boom.common.WithNHWSamplers(0) ++                          // Use Interval, PEBS and IBS HW samplers
   new boom.common.WithNBoomCores(1) ++                           // single-core boom
   new freechips.rocketchip.subsystem.WithCoherentBusTopology ++  // hierarchical buses including mbus+l2
   new freechips.rocketchip.system.BaseConfig)                    // "base" rocketchip system
@@ -40,6 +42,7 @@ class MediumBoomConfig extends Config(
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
   new freechips.rocketchip.subsystem.WithNExtTopInterrupts(0) ++
   new boom.common.WithMediumBooms ++                              // medium boom config
+  new boom.common.WithNHWSamplers(0) ++                          // Use Interval, PEBS and IBS HW samplers
   new boom.common.WithNBoomCores(1) ++
   new freechips.rocketchip.subsystem.WithCoherentBusTopology ++
   new freechips.rocketchip.system.BaseConfig)
@@ -59,6 +62,7 @@ class LargeBoomConfig extends Config(
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
   new freechips.rocketchip.subsystem.WithNExtTopInterrupts(0) ++
   new boom.common.WithLargeBooms ++                              // large boom config
+  new boom.common.WithNHWSamplers(0) ++                          // Use Interval, PEBS and IBS HW samplers
   new boom.common.WithNBoomCores(1) ++
   new freechips.rocketchip.subsystem.WithCoherentBusTopology ++
   new freechips.rocketchip.system.BaseConfig)
@@ -78,6 +82,7 @@ class MegaBoomConfig extends Config(
   new freechips.rocketchip.subsystem.WithInclusiveCache ++
   new freechips.rocketchip.subsystem.WithNExtTopInterrupts(0) ++
   new boom.common.WithMegaBooms ++                              // mega boom config
+  new boom.common.WithNHWSamplers(0) ++                          // Use Interval, PEBS and IBS HW samplers
   new boom.common.WithNBoomCores(1) ++
   new freechips.rocketchip.subsystem.WithCoherentBusTopology ++
   new freechips.rocketchip.system.BaseConfig)

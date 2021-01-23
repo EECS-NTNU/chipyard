@@ -78,7 +78,10 @@ class WithTracerVBridge extends ComposeIOBinder({
     system.traceIO.foreach(_.traces.map(tileTrace => TracerVBridge(tileTrace)(system.p))); Nil
 })
 
-
+class WithGenericTraceBridge extends ComposeIOBinder({
+  (system: CanHaveGenericTraceIOModuleImp) =>
+    system.genericTraceIO.foreach(_.generic_traces.map(tileGenericTrace => GenericTraceBridge(tileGenericTrace)(system.p))); Nil
+})
 
 class WithDromajoBridge extends ComposeIOBinder({
   (system: CanHaveTraceIOModuleImp) => {

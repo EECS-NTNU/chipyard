@@ -175,6 +175,10 @@ lazy val tapeout = conditionalDependsOn(project in file("./tools/barstools/tapeo
   .settings(commonSettings)
   .settings(libraryDependencies ++= Seq("io.github.daviddenton" %% "handlebars-scala-fork" % "2.3.0"))
 
+lazy val zynq = (project in file("generators/zynq"))
+  .dependsOn(chipyard)
+  .settings(commonSettings)
+
 lazy val mdf = (project in file("./tools/barstools/mdf/scalalib/"))
   .settings(commonSettings)
 
