@@ -23,6 +23,8 @@ import testchipip.WithRingSystemBus
 import firesim.bridges._
 import firesim.configs._
 
+import boom.common.WithBoomDebugPrintf
+
 class WithBootROM extends Config((site, here, up) => {
   case BootROMLocated(x) => {
     val chipyardBootROM = new File(s"./generators/testchipip/bootrom/bootrom.rv${site(XLen)}.img")
@@ -84,6 +86,7 @@ class WithFireSimConfigTweaks extends Config(
   // Required*: Removes thousands of assertions that would be synthesized (* pending PriorityMux bugfix)
   new WithoutTLMonitors ++
   // Optional: Adds IO to attach tracerV bridges
+  new chipyard.config.WithGenericTraceIO ++
   new chipyard.config.WithTraceIO ++
   // Optional: Request 16 GiB of target-DRAM by default (can safely request up to 32 GiB on F1)
   new freechips.rocketchip.subsystem.WithExtMemSize((1 << 30) * 16L) ++
@@ -146,11 +149,57 @@ class FireSimSmallSystemConfig extends Config(
 //*****************************************************************
 // Boom config, base off chipyard's LargeBoomConfig
 //*****************************************************************
+class FireSimDebugSmallBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithBoomDebugPrintf ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.SmallBoomConfig)
+
+class FireSimDebugMediumBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithBoomDebugPrintf ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.MediumBoomConfig)
+
+class FireSimDebugLargeBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithBoomDebugPrintf ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.LargeBoomConfig)
+
+class FireSimDebugMegaBoomConfig extends Config(
+    new WithDefaultFireSimBridges ++
+    new WithBoomDebugPrintf ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.LargeBoomConfig)
+
+class FireSimSmallBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.SmallBoomConfig)
+
+class FireSimMediumBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.MediumBoomConfig)
+
 class FireSimLargeBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
   new WithDefaultMemModel ++
   new WithFireSimConfigTweaks ++
   new chipyard.LargeBoomConfig)
+
+class FireSimMegaBoomConfig extends Config(
+  new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.MegaBoomConfig)
 
 //********************************************************************
 // Heterogeneous config, base off chipyard's LargeBoomAndRocketConfig

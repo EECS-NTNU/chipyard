@@ -350,6 +350,17 @@ class WithTraceGenSuccessPunchthrough extends OverrideIOBinder({
   }
 })
 
+class WithGenericTraceIOPunchthrough extends OverrideIOBinder({
+  (system: CanHaveGenericTraceIOModuleImp) => {
+    val ports: Option[GenericTraceOutputTop] = system.genericTraceIO.map { t =>
+      val trace = IO(DataMirror.internal.chiselTypeClone[GenericTraceOutputTop](t)).suggestName("gentrace")
+      trace <> t
+      trace
+    }
+    (ports.toSeq, Nil)
+  }
+})
+
 class WithTraceIOPunchthrough extends OverrideIOBinder({
   (system: CanHaveTraceIOModuleImp) => {
     val ports: Option[TraceOutputTop] = system.traceIO.map { t =>

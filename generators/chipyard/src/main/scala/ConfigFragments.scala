@@ -275,8 +275,6 @@ class WithRationalMemoryBusCrossing extends WithSbusToMbusCrossingType(RationalC
 class WithAsynchrousMemoryBusCrossing extends WithSbusToMbusCrossingType(AsynchronousCrossing())
 
 class WithGenericTraceIO extends Config((site, here, up) => {
-  case BoomTilesKey => up(BoomTilesKey) map (tile => tile.copy(genericTrace = true))
   case GenericTracePortKey => Some(GenericTracePortParams())
 })
-
 

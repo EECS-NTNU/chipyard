@@ -35,6 +35,7 @@ class AbstractConfig extends Config(
   new chipyard.iobinders.WithGPIOCells ++
   new chipyard.iobinders.WithUARTIOCells ++
   new chipyard.iobinders.WithSPIIOCells ++
+  new chipyard.iobinders.WithGenericTraceIOPunchthrough ++
   new chipyard.iobinders.WithTraceIOPunchthrough ++
   new chipyard.iobinders.WithExtInterruptIOCells ++
 
