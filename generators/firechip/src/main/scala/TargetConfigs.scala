@@ -175,7 +175,7 @@ class FireSimDebugMegaBoomConfig extends Config(
     new WithBoomDebugPrintf ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
-    new chipyard.LargeBoomConfig)
+    new chipyard.MegaBoomConfig)
 
 class FireSimSmallBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
