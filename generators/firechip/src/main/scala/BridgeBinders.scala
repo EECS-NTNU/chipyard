@@ -183,6 +183,18 @@ class WithFireSimFAME5 extends ComposeIOBinder({
 })
 
 // Shorthand to register all of the provided bridges above
+class WithAdjustedFireSimBridges extends Config(
+  new WithSerialBridge ++
+  new WithNICBridge ++
+  new WithUARTBridge ++
+  new WithBlockDeviceBridge ++
+  new WithFASEDBridge ++
+  new WithFireSimMultiCycleRegfile ++
+  new WithFireSimFAME5 ++
+  new WithGenericTraceBridge ++
+  new WithFireSimIOCellModels
+)
+// Shorthand to register all of the provided bridges above
 class WithDefaultFireSimBridges extends Config(
   new WithSerialBridge ++
   new WithNICBridge ++
@@ -191,7 +203,7 @@ class WithDefaultFireSimBridges extends Config(
   new WithFASEDBridge ++
   new WithFireSimMultiCycleRegfile ++
   new WithFireSimFAME5 ++
-//  new WithTracerVBridge ++
+  new WithTracerVBridge ++
   new WithGenericTraceBridge ++
   new WithFireSimIOCellModels
 )
