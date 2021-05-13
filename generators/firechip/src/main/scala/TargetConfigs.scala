@@ -1,29 +1,26 @@
 package firesim.firesim
 
 import java.io.File
-
 import chisel3._
-import chisel3.util.{log2Up}
-import freechips.rocketchip.config.{Parameters, Config}
+import chisel3.util.log2Up
+import freechips.rocketchip.config.{Config, Parameters}
 import freechips.rocketchip.groundtest.TraceGenParams
 import freechips.rocketchip.tile._
 import freechips.rocketchip.tilelink._
 import freechips.rocketchip.rocket.DCacheParams
 import freechips.rocketchip.subsystem._
 import freechips.rocketchip.devices.tilelink.{BootROMLocated, BootROMParams}
-import freechips.rocketchip.devices.debug.{DebugModuleParams, DebugModuleKey}
+import freechips.rocketchip.devices.debug.{DebugModuleKey, DebugModuleParams}
 import freechips.rocketchip.diplomacy.LazyModule
-import testchipip.{BlockDeviceKey, BlockDeviceConfig, TracePortKey, TracePortParams}
+import testchipip.{BlockDeviceConfig, BlockDeviceKey, TracePortKey, TracePortParams}
 import sifive.blocks.devices.uart.{PeripheryUARTKey, UARTParams}
-import scala.math.{min, max}
 
+import scala.math.{max, min}
 import icenet._
 import testchipip.WithRingSystemBus
-
 import firesim.bridges._
 import firesim.configs._
-
-import boom.common.WithBoomDebugPrintf
+import boom.common.{WithBoomDebugPrintf, WithHWSampler}
 
 class WithBootROM extends Config((site, here, up) => {
   case BootROMLocated(x) => {
@@ -193,6 +190,7 @@ class FireSimSmallSystemConfig extends Config(
 class FireSimDebugSmallBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
     new WithBoomDebugPrintf ++
+    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.SmallBoomConfig)
@@ -200,6 +198,7 @@ class FireSimDebugSmallBoomConfig extends Config(
 class FireSimDebugMediumBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
     new WithBoomDebugPrintf ++
+    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.MediumBoomConfig)
@@ -207,37 +206,43 @@ class FireSimDebugMediumBoomConfig extends Config(
 class FireSimDebugLargeBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
     new WithBoomDebugPrintf ++
+    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.LargeBoomConfig)
 
 class FireSimDebugMegaBoomConfig extends Config(
-    new WithDefaultFireSimBridges ++
+  new WithDefaultFireSimBridges ++
     new WithBoomDebugPrintf ++
+    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.MegaBoomConfig)
 
 class FireSimSmallBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
+    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.SmallBoomConfig)
 
 class FireSimMediumBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
+    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.MediumBoomConfig)
 
 class FireSimLargeBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
-  new WithDefaultMemModel ++
-  new WithFireSimConfigTweaks ++
-  new chipyard.LargeBoomConfig)
+    new WithHWSampler ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.LargeBoomConfig)
 
 class FireSimMegaBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
+    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.MegaBoomConfig)
