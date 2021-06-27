@@ -99,7 +99,7 @@ class BoomLSUShim(implicit p: Parameters) extends BoomModule()(p)
   }
 
   when (io.lsu.clr_bsy(0).valid) {
-    rob_bsy(io.lsu.clr_bsy(0).bits) := false.B
+    rob_bsy(io.lsu.clr_bsy(0).bits.rob_idx) := false.B
   }
   when (io.lsu.clr_unsafe(0).valid && rob(io.lsu.clr_unsafe(0).bits).cmd =/= M_XLR) {
     rob_bsy(io.lsu.clr_unsafe(0).bits) := false.B
