@@ -221,28 +221,24 @@ class FireSimDebugMegaBoomConfig extends Config(
 
 class FireSimSmallBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
-    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.SmallBoomConfig)
 
 class FireSimMediumBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
-    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.MediumBoomConfig)
 
 class FireSimLargeBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
-    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.LargeBoomConfig)
 
 class FireSimMegaBoomConfig extends Config(
   new WithDefaultFireSimBridges ++
-    new WithHWSampler ++
     new WithDefaultMemModel ++
     new WithFireSimConfigTweaks ++
     new chipyard.MegaBoomConfig)
