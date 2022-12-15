@@ -22,6 +22,14 @@ class MegaBoomConfig extends Config(
   new boom.common.WithNMegaBooms(1) ++                           // mega boom config
   new chipyard.config.AbstractConfig)
 
+class TestBoomConfig extends Config(
+  new boom.common.WithNTestBooms(1) ++                           // mega boom config
+    new chipyard.config.AbstractConfig)
+
+class UltraBoomConfig extends Config(
+  new boom.common.WithNUltraBooms(1) ++                           // mega boom config
+  new chipyard.config.AbstractConfig)
+
 class DualSmallBoomConfig extends Config(
   new boom.common.WithNSmallBooms(2) ++                          // 2 boom cores
   new chipyard.config.AbstractConfig)

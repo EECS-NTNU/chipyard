@@ -106,6 +106,27 @@ class WithFireSimHighPerfClocking extends Config(
   new testchipip.WithAsynchronousSerialSlaveCrossing
 )
 
+class WithFireSimTEAClocking extends Config(
+  // Optional: This sets the default frequency for all buses in the system to 3.2 GHz
+  // (since unspecified bus frequencies will use the pbus frequency)
+  // This frequency selection matches FireSim's legacy selection and is required
+  // to support 200Gb NIC performance. You may select a smaller value.
+  new chipyard.config.WithPeripheryBusFrequency(3200.0) ++
+    // Optional: These three configs put the DRAM memory system in it's own clock domain.
+    // Removing the first config will result in the FASED timing model running
+    // at the pbus freq (above, 3.2 GHz), which is outside the range of valid DDR3 speedgrades.
+    // 1 GHz matches the FASED default, using some other frequency will require
+    // runnings the FASED runtime configuration generator to generate faithful DDR3 timing values.
+    new chipyard.config.WithMemoryBusFrequency(1000.0) ++
+    // Before the Memory bus there will be a clock domain crossing which by default only
+    // has a buffer depth of 8, which is for this memory system not enough.
+    // We increase it here to 32
+    new chipyard.config.WithSbusToMbusCrossingType(AsynchronousCrossing(depth = 32)) ++
+    new testchipip.WithAsynchronousSerialSlaveCrossing
+)
+
+
+
 // Tweaks that are generally applied to all firesim configs setting a single clock domain at 1000 MHz
 class WithFireSimConfigTweaks extends Config(
   // 1 GHz matches the FASED default (DRAM modeli realistically configured for that frequency)
@@ -128,6 +149,11 @@ class WithFireSimTestChipConfigTweaks extends Config(
 // Tweaks for legacy FireSim configs.
 class WithFireSimHighPerfConfigTweaks extends Config(
   new WithFireSimHighPerfClocking ++
+  new WithFireSimDesignTweaks
+)
+
+class WithFireSimTEAConfigTweaks extends Config(
+  new WithFireSimTEAClocking ++
   new WithFireSimDesignTweaks
 )
 
@@ -202,6 +228,45 @@ class FireSimLargeBoomAndRocketConfig extends Config(
   new WithDefaultMemModel ++
   new WithFireSimConfigTweaks ++
   new chipyard.LargeBoomAndRocketConfig)
+
+
+//********************************************************************
+// Heterogeneous config, base off chipyard's UltraBoomConfig
+//********************************************************************
+class FireSimTEASmallBoomConfig extends Config(
+  new WithEdgeDataBits(128) ++
+    new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimTEAConfigTweaks ++
+    new freechips.rocketchip.subsystem.WithNTrackersPerBank(8) ++
+    new freechips.rocketchip.subsystem.WithNBanks(1) ++
+    new freechips.rocketchip.subsystem.WithInclusiveCache(nWays = 8, capacityKB = 512, subBankingFactor = 4) ++
+    new boom.common.WithBoomMemoryLatencyTracking ++
+    new chipyard.SmallBoomConfig)
+
+class FireSimTEAUltraBoom2MBL2PrftRoCCConfig extends Config(
+  new WithEdgeDataBits(128) ++
+    new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimTEAConfigTweaks ++
+    new freechips.rocketchip.subsystem.WithNTrackersPerBank(12) ++
+    new freechips.rocketchip.subsystem.WithNBanks(2) ++
+    new freechips.rocketchip.subsystem.WithInclusiveCache(nWays = 16, capacityKB = 1024, subBankingFactor = 8, outerLatencyCycles = 40) ++
+    new boom.common.WithSoftwarePrefetchRoCC ++
+    new boom.common.WithBoomMemoryLatencyTracking ++
+    new chipyard.UltraBoomConfig)
+
+class FireSimTEATestBoom2MBL2PrftRoCCConfig extends Config(
+  new WithEdgeDataBits(128) ++
+    new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimTEAConfigTweaks ++
+    new freechips.rocketchip.subsystem.WithNTrackersPerBank(12) ++
+    new freechips.rocketchip.subsystem.WithNBanks(2) ++
+    new freechips.rocketchip.subsystem.WithInclusiveCache(nWays = 16, capacityKB = 1024, subBankingFactor = 8, outerLatencyCycles = 40) ++
+    new boom.common.WithSoftwarePrefetchRoCC ++
+    new boom.common.WithBoomMemoryLatencyTracking ++
+    new chipyard.TestBoomConfig)
 
 //******************************************************************
 // Gemmini NN accel config, base off chipyard's GemminiRocketConfig
