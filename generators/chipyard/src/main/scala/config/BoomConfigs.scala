@@ -14,6 +14,11 @@ class MediumBoomConfig extends Config(
   new boom.common.WithNMediumBooms(1) ++                         // medium boom config
   new chipyard.config.AbstractConfig)
 
+class MediumBoomConfigTaint extends Config(
+  new boom.common.WithTaintTrackingEnabled ++
+  new boom.common.WithNMediumBooms(1) ++
+  new chipyard.config.AbstractConfig)
+
 class LargeBoomConfig extends Config(
   new boom.common.WithNLargeBooms(1) ++                          // large boom config
   new chipyard.config.AbstractConfig)
