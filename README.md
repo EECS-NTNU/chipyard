@@ -1,3 +1,24 @@
+# TEA: Time-Proportional Event Analysis
+
+* **ISCA 2023 Slides**: [ISCA\_2023\_TEA\_Time-Proportional\_Event\_Analysis.pdf](Ihttps://github.com/EECS-NTNU/chipyard/blob/tea/ISCA_2023_TEA_Time-Proportional_Event_Analysis.pdf)
+
+Please follow the official chipyard/firesim documentation for setting up this repository.
+
+The paper used the `DDR3FRFCFS_FireSimIPAUltraBoom2MBL2PrftRoCCConfig-BaseF1Config1Mem` configuration running on the Alveo U250. You can use the firesim manager to run your simulations or do it manually. To trigger the collection of data and running the profilers the command line that firesim executes must be extended to instantiate the respective TraceDoctor workers. This is an example (newlines and comments added for explanation and must be removed to execute the firesim driver):
+
+```
+./FireSim-u250 +permissive [default firesim parameters]
++tracedoctor-buffers=128,256 # Adjust according to your host resources
++tracedoctor-worker=oracle,file:oracle.csv.gz # Oracle Data
++tracedoctor-worker=tea_gold,file:tea_severity_hist.csv.gz,file:tea_cycle_hist.csv.gz # TEA Golden Model
++tracedoctor-worker=tea_sampler,samplingPeriod:800000,file:tea_sampler_4khz.csv.gz # TEA Profiler at 4 kHz
+[more default firesim parameter]
+```
+
+Oracle produces statistics per instruction address in one CSV. TEA produces histograms in which each address and each event combination does have the distribution of stall cycles (severity, first file) and a distribution of total cycles (stall + commit cycles, second file). These histograms are done in a compressed notation (bucket:count/bucket:count/...). The event combinations is a bit field for which each bit represents one event that the instruction experienced. For more details which bits are which event have a look at [tracedoctor\_tea.h](https://github.com/EECS-NTNU/firesim/blob/tea/sim/firesim-lib/src/main/cc/bridges/tracedoctor_tea.h). The 2 histogramms (be carefull to substract the severity off the total cycles to not double account for cycles) combined will create the golden PICS the instructions. The TEA sampler outputs all samples into one file which must be processed and aggregated to generate the PICS.
+
+Scripts from [https://github.com/EECS-NTNU/pperf](https://github.com/EECS-NTNU/pperf), [https://github.com/bgottschall/pythonTools](https://github.com/bgottschall/pythonTools) and [https://github.com/bgottschall/plotgen](https://github.com/bgottschall/plotgen) might help you in parsing and processing the data.
+
 ![CHIPYARD](https://github.com/ucb-bar/chipyard/raw/master/docs/_static/images/chipyard-logo-full.png)
 
 # Chipyard Framework [![Test](https://github.com/ucb-bar/chipyard/actions/workflows/chipyard-run-tests.yml/badge.svg)](https://github.com/ucb-bar/chipyard/actions)
