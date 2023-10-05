@@ -1,6 +1,6 @@
 # TEA: Time-Proportional Event Analysis
 
-* **ISCA 2023 Slides**: [ISCA\_2023\_TEA\_Time-Proportional\_Event\_Analysis.pdf](Ihttps://github.com/EECS-NTNU/chipyard/blob/tea/ISCA_2023_TEA_Time-Proportional_Event_Analysis.pdf)
+* **ISCA 2023 Slides**: [ISCA\_2023\_TEA\_Time-Proportional\_Event\_Analysis.pdf](https://github.com/EECS-NTNU/chipyard/blob/tea/ISCA_2023_TEA_Time-Proportional_Event_Analysis.pdf)
 
 Please follow the official chipyard/firesim documentation for setting up this repository.
 
