@@ -19,3 +19,4 @@ tags
 .conda-env/
 .#*
 first-clone-setup-fast-log
+*.uuid
