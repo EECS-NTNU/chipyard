@@ -14,9 +14,15 @@ class MediumBoomConfig extends Config(
   new boom.common.WithNMediumBooms(1) ++                         // medium boom config
   new chipyard.config.AbstractConfig)
 
-class MediumBoomConfigTaint extends Config(
+class MediumBoomConfigRenTaint extends Config(
   new boom.common.WithInOrderBranchResolution ++
-  new boom.common.WithTaintTrackingEnabled ++
+  new boom.common.WithRenameTaintTrackingEnabled ++
+  new boom.common.WithNMediumBooms(1) ++
+  new chipyard.config.AbstractConfig)
+
+class MediumBoomConfigRegTaint extends Config(
+  new boom.common.WithInOrderBranchResolution ++
+  new boom.common.WithRegisterTaintTrackingEnabled ++
   new boom.common.WithNMediumBooms(1) ++
   new chipyard.config.AbstractConfig)
 
