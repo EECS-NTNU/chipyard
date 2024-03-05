@@ -15,7 +15,6 @@ class MediumBoomConfig extends Config(
   new chipyard.config.AbstractConfig)
 
 class MediumBoomConfigRenTaint extends Config(
-  new boom.common.WithInOrderBranchResolution ++
   new boom.common.WithRenameTaintTrackingEnabled ++
   new boom.common.WithNMediumBooms(1) ++
   new chipyard.config.AbstractConfig)
@@ -35,8 +34,13 @@ class MegaBoomConfigRegTaint extends Config(
 
 class MegaBoomConfigRenTaint extends Config(
   new boom.common.WithTraceStats ++
-  new boom.common.WithInOrderBranchResolution ++
   new boom.common.WithRenameTaintTrackingEnabled ++
+  new boom.common.WithNMegaBooms(1) ++
+  new chipyard.config.AbstractConfig)
+
+class MegaBoomConfigNDA extends Config(
+  new boom.common.WithTraceStats ++
+  new boom.common.WithNDAEnabled ++ 
   new boom.common.WithNMegaBooms(1) ++
   new chipyard.config.AbstractConfig)
 
@@ -45,6 +49,7 @@ class LargeBoomConfig extends Config(
   new chipyard.config.AbstractConfig)
 
 class MegaBoomConfig extends Config(
+  new boom.common.WithTraceStats ++
   new boom.common.WithNMegaBooms(1) ++                           // mega boom config
   new chipyard.config.AbstractConfig)
 

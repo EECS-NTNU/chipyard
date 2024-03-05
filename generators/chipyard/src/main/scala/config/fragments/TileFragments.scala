@@ -33,7 +33,7 @@ class WithTraceIO extends Config((site, here, up) => {
   case TracePortKey => Some(TracePortParams())
 })
 
-class WithTraceDoctorIO(traceWidth: Int = 204) extends Config((site, here, up) => {
+class WithTraceDoctorIO(traceWidth: Int = 512) extends Config((site, here, up) => {
   case TilesLocated(InSubsystem) => up(TilesLocated(InSubsystem), site) map {
     case tp: RocketTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
       core = tp.tileParams.core.copy(setTraceDoctorWidth = traceWidth)))
