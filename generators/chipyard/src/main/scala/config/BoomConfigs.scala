@@ -31,8 +31,6 @@ class MediumBoomConfigNDA extends Config(
   new chipyard.config.AbstractConfig)
 
 class MegaBoomConfigRegTaint extends Config(
-  //Is this necessary? Shouldnt be, should only be for rentaint
-  new boom.common.WithInOrderBranchResolution ++
   new boom.common.WithRegisterTaintTrackingEnabled ++
   new boom.common.WithNMegaBooms(1) ++
   new chipyard.config.AbstractConfig)
