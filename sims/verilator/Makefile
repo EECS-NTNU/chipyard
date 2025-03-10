@@ -56,7 +56,8 @@ SIM_FILE_REQS += \
   $(VORTEX_ROOT)/sim/common/rvfloats.cpp \
   $(VORTEX_ROOT)/hw/dpi/float_dpi.cpp \
   $(VORTEX_ROOT)/hw/dpi/util_dpi.cpp \
-	$(VORTEX_ROOT)/hw/dpi/chipyard_util.cpp
+	$(VORTEX_ROOT)/hw/dpi/chipyard_util.cpp \
+	$(VORTEX_ROOT)/runtime/chipyard/vortex_ipc.h
 endif
 
 # the following files are needed for emulator.cc to compile
