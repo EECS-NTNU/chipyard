@@ -9,6 +9,7 @@ import freechips.rocketchip.rocket.{RocketCoreParams, MulDivParams, DCacheParams
 
 import boom.common.{BoomTileAttachParams}
 import cva6.{CVA6TileAttachParams}
+import vortex.{VortexTileAttachParams}
 
 import testchipip._
 
@@ -38,6 +39,8 @@ class WithTraceDoctorIO(traceWidth: Int = 204) extends Config((site, here, up) =
     case tp: RocketTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
       core = tp.tileParams.core.copy(setTraceDoctorWidth = traceWidth)))
     case tp: BoomTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
+      core = tp.tileParams.core.copy(setTraceDoctorWidth = traceWidth)))
+    case tp: VortexTileAttachParams => tp.copy(tileParams = tp.tileParams.copy(
       core = tp.tileParams.core.copy(setTraceDoctorWidth = traceWidth)))
     case other => other
   }

@@ -268,3 +268,66 @@ class FireSimNoMemPortConfig extends Config(
   new testchipip.WithBackingScratchpad ++
   new WithFireSimConfigTweaks ++
   new chipyard.RocketConfig)
+
+/**
+  * Custom config for Vortex, as there are some configs within WithFireSimDesignTweaks
+  * that either break the compilation or is not needed.
+  *
+  */
+class WithFireSimVortexTweaks extends Config(
+  new WithDefaultFireSimBridges ++
+  // 1 GHz matches the FASED default (DRAM modeli realistically configured for that frequency)
+  // Using some other frequency will require runnings the FASED runtime configuration generator
+  // to generate faithful DDR3 timing values.
+  new chipyard.config.WithSystemBusFrequency(1000.0) ++
+  new chipyard.config.WithSystemBusFrequencyAsDefault ++ // All unspecified clock frequencies, notably the implicit clock, will use the sbus freq (1000 MHz)
+  // Explicitly set PBUS + MBUS to 1000 MHz, since they will be driven to 100 MHz by default because of assignments in the Chisel
+  new chipyard.config.WithPeripheryBusFrequency(1000.0) ++
+  new chipyard.config.WithMemoryBusFrequency(1000.0) ++
+  // Optional: reduce the width of the Serial TL interface
+  new testchipip.WithSerialTLWidth(4) ++
+  // Required: Bake in the default FASED memory model
+  new WithDefaultMemModel ++
+  // Required*: Uses FireSim ClockBridge and PeekPokeBridge to drive the system with a single clock/reset
+  new WithFireSimHarnessClockBinder ++
+  new WithFireSimSimpleClocks ++
+  // Required*: When using FireSim-as-top to provide a correct path to the target bootrom source
+  new WithBootROM ++
+  // Required: Existing FAME-1 transform cannot handle black-box clock gates
+  new WithoutClockGating ++
+  // Required*: Removes thousands of assertions that would be synthesized (* pending PriorityMux bugfix)
+  new WithoutTLMonitors ++
+  // Optional: bridge for tracerv
+  //new chipyard.config.WithTraceIO ++
+  // TODO: add trace doctor
+  new chipyard.config.WithTraceDoctorIO(2) ++
+  // Required*: Scale default baud rate with periphery bus frequency
+  new chipyard.config.WithUART(BigInt(3686400L)) ++
+  // Required: Do not support debug module w. JTAG until FIRRTL stops emitting @(posedge ~clock)
+  new chipyard.config.WithNoDebug
+)
+
+class FireSimVortexGPGPUConfig extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.VortexGPGPUConfig
+)
+
+class FireSimSmallVortexConfig extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.SmallVortexConfig
+)
+
+class FireSimMediumVortexConfig extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.MediumVortexConfig
+)
+
+class FireSimLargeVortexConfig extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.LargeVortexConfig
+)
+
+class FireSimXtraLargeVortexConfig extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.XtraLargeVortexConfig
+)

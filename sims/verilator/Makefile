@@ -1,7 +1,8 @@
 #########################################################################################
 # verilator makefile
 #########################################################################################
-ifeq ($(shell which verilator),)
+VERILATOR_BIN ?= $(CONDA_PREFIX)/bin/verilator
+ifeq ($(shell which $(VERILATOR_BIN)),)
 $(error Did not find Verilator in PATH. Make sure all requirements are installed)
 endif
 
@@ -50,6 +51,14 @@ SIM_FILE_REQS += \
 	$(CHIPYARD_RSRCS_DIR)/csrc/emulator.cc \
 	$(ROCKETCHIP_RSRCS_DIR)/csrc/verilator.h \
 
+ifdef BUILD_VORTEX
+SIM_FILE_REQS += \
+  $(VORTEX_ROOT)/sim/common/rvfloats.cpp \
+  $(VORTEX_ROOT)/hw/dpi/float_dpi.cpp \
+  $(VORTEX_ROOT)/hw/dpi/util_dpi.cpp \
+	$(VORTEX_ROOT)/hw/dpi/chipyard_util.cpp
+endif
+
 # the following files are needed for emulator.cc to compile
 SIM_FILE_REQS += \
 	$(TESTCHIP_RSRCS_DIR)/testchipip/csrc/SimSerial.cc \
@@ -92,7 +101,7 @@ HELP_COMPILATION_VARIABLES += \
 #########################################################################################
 # verilator/cxx binary and flags
 #########################################################################################
-VERILATOR := verilator --cc --exe
+VERILATOR := $(VERILATOR_BIN) --cc --exe
 
 #----------------------------------------------------------------------------------------
 # user configs
@@ -148,10 +157,10 @@ PLATFORM_OPTS = $(shell \
 	else echo "$(CHIPYARD_VERILATOR_FLAGS)"; fi)
 
 # Use --timescale to approximate timescale behavior of pre-4.034
-TIMESCALE_OPTS := $(shell verilator --version | perl -lne 'if (/(\d.\d+)/ && $$1 >= 4.034) { print "--timescale 1ns/1ps"; }')
+TIMESCALE_OPTS := $(shell $(VERILATOR_BIN) --version | perl -lne 'if (/(\d.\d+)/ && $$1 >= 4.034) { print "--timescale 1ns/1ps"; }')
 
 # see: https://github.com/ucb-bar/riscv-mini/issues/31
-MAX_WIDTH_OPTS = $(shell verilator --version | perl -lne 'if (/(\d.\d+)/ && $$1 > 4.016) { print "--max-num-width 1048576"; }')
+MAX_WIDTH_OPTS = $(shell $(VERILATOR_BIN) --version | perl -lne 'if (/(\d.\d+)/ && $$1 > 4.016) { print "--max-num-width 1048576"; }')
 
 PREPROC_DEFINES := \
 	+define+PRINTF_COND=\$$c\(\"verbose\",\"\&\&\"\,\"done_reset\"\) \
@@ -193,7 +202,7 @@ VERILATOR_CC_OPTS = \
 #----------------------------------------------------------------------------------------
 # full verilator+gcc opts
 #----------------------------------------------------------------------------------------
-VERILATOR_OPTS = $(VERILATOR_CC_OPTS) $(VERILATOR_NONCC_OPTS)
+VERILATOR_OPTS = -Wno-BLKANDNBLK $(VERILATOR_CC_OPTS) $(VERILATOR_NONCC_OPTS)
 
 #########################################################################################
 # verilator build paths and file names
@@ -229,6 +238,12 @@ $(sim): $(model_mk) $(dramsim_lib)
 	$(MAKE) VM_PARALLEL_BUILDS=1 -C $(model_dir) -f V$(VLOG_MODEL).mk
 
 $(sim_debug): $(model_mk_debug) $(dramsim_lib)
+	$(MAKE) VM_PARALLEL_BUILDS=1 -C $(model_dir_debug) -f V$(VLOG_MODEL).mk
+
+libchipyard: $(model_mk) $(dramsim_lib)
+	$(MAKE) VM_PARALLEL_BUILDS=1 -C $(model_dir) -f V$(VLOG_MODEL).mk
+
+libchipyard-debug: $(model_mk_debug) $(dramsim_lib)
 	$(MAKE) VM_PARALLEL_BUILDS=1 -C $(model_dir_debug) -f V$(VLOG_MODEL).mk
 
 #########################################################################################
