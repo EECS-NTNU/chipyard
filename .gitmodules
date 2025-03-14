@@ -1,135 +1,132 @@
 [submodule "rocket-chip"]
 	path = generators/rocket-chip
-	url = https://github.com/EECS-NTNU/rocket-chip.git
+	url = ../rocket-chip.git
 [submodule "testchipip"]
 	path = generators/testchipip
-	url = https://github.com/EECS-NTNU/testchipip.git
+	url = ../testchipip.git
 [submodule "barstools"]
 	path = tools/barstools
-	url = https://github.com/ucb-bar/barstools.git
+	url = ../../ucb-bar/barstools.git
 [submodule "tools/torture"]
 	path = tools/torture
-	url = https://github.com/ucb-bar/riscv-torture.git
+	url = ../../ucb-bar/riscv-torture.git
 [submodule "generators/boom"]
 	path = generators/boom
-	url = https://github.com/EECS-NTNU/riscv-boom.git
+	url = ../riscv-boom.git
 [submodule "generators/sifive-blocks"]
 	path = generators/sifive-blocks
-	url = https://github.com/chipsalliance/rocket-chip-blocks.git
+	url = ../../chipsalliance/rocket-chip-blocks.git
 [submodule "generators/hwacha"]
 	path = generators/hwacha
-	url = https://github.com/ucb-bar/hwacha.git
+	url = ../../ucb-bar/hwacha.git
 [submodule "sims/firesim"]
 	path = sims/firesim
-	url = https://github.com/EECS-NTNU/firesim.git
+	url = ../firesim.git
 [submodule "generators/icenet"]
 	path = generators/icenet
-	url = https://github.com/firesim/icenet.git
+	url = ../../firesim/icenet.git
 [submodule "generators/block-inclusivecache-sifive"]
 	path = generators/sifive-cache
-	url = https://github.com/chipsalliance/rocket-chip-inclusive-cache.git
+	url = ../../chipsalliance/rocket-chip-inclusive-cache.git
 [submodule "vlsi/hammer"]
 	path = vlsi/hammer
-	url = https://github.com/ucb-bar/hammer.git
+	url = ../../ucb-bar/hammer.git
 [submodule "tools/dsptools"]
 	path = tools/dsptools
-	url = https://github.com/ucb-bar/dsptools.git
+	url = ../../ucb-bar/dsptools.git
 [submodule "tools/chisel-testers"]
 	path = tools/chisel-testers
-	url = https://github.com/freechipsproject/chisel-testers.git
+	url = ../../freechipsproject/chisel-testers.git
 [submodule "generators/sha3"]
 	path = generators/sha3
-	url = https://github.com/ucb-bar/sha3.git
+	url = ../../ucb-bar/sha3.git
 [submodule "vlsi/hammer-cadence-plugins"]
 	path = vlsi/hammer-cadence-plugins
-	url = https://github.com/ucb-bar/hammer-cadence-plugins.git
+	url = ../../ucb-bar/hammer-cadence-plugins.git
 [submodule "vlsi/hammer-synopsys-plugins"]
 	path = vlsi/hammer-synopsys-plugins
-	url = https://github.com/ucb-bar/hammer-synopsys-plugins.git
-[submodule "vlsi/hammer-mentor-plugins"]
-	path = vlsi/hammer-mentor-plugins
-	url = https://github.com/ucb-bar/hammer-mentor-plugins.git
+	url = ../../ucb-bar/hammer-synopsys-plugins.git
 [submodule "tools/axe"]
 	path = tools/axe
-	url = https://github.com/CTSRD-CHERI/axe.git
+	url = ../../CTSRD-CHERI/axe.git
 [submodule "software/spec2017"]
 	path = software/spec2017
-	url = https://github.com/ucb-bar/spec2017-workload.git
+	url = ../../ucb-bar/spec2017-workload.git
 [submodule "software/coremark"]
 	path = software/coremark
-	url = https://github.com/ucb-bar/coremark-workload.git
+	url = ../../ucb-bar/coremark-workload.git
 [submodule "generators/gemmini"]
 	path = generators/gemmini
-	url = https://github.com/ucb-bar/gemmini
+	url = ../../ucb-bar/gemmini
 [submodule "software/firemarshal"]
 	path = software/firemarshal
-	url = https://github.com/firesim/FireMarshal.git
+	url = ../../firesim/FireMarshal.git
 [submodule "generators/cva6"]
 	path = generators/cva6
-	url = https://github.com/ucb-bar/cva6-wrapper.git
+	url = ../../ucb-bar/cva6-wrapper.git
 [submodule "tools/DRAMSim2"]
 	path = tools/DRAMSim2
-	url = https://github.com/firesim/DRAMSim2.git
+	url = ../../firesim/DRAMSim2.git
 [submodule "generators/nvdla"]
 	path = generators/nvdla
-	url = https://github.com/ucb-bar/nvdla-wrapper.git
+	url = ../../ucb-bar/nvdla-wrapper.git
 [submodule "software/nvdla-workload"]
 	path = software/nvdla-workload
-	url = https://github.com/ucb-bar/nvdla-workload.git
+	url = ../../ucb-bar/nvdla-workload.git
 [submodule "tools/dromajo/dromajo-src"]
 	path = tools/dromajo/dromajo-src
-	url = https://github.com/riscv-boom/dromajo.git
+	url = ../../riscv-boom/dromajo.git
 [submodule "generators/riscv-sodor"]
 	path = generators/riscv-sodor
-	url = https://github.com/ucb-bar/riscv-sodor.git
+	url = ../../ucb-bar/riscv-sodor.git
 [submodule "fpga/fpga-shells"]
 	path = fpga/fpga-shells
-	url = https://github.com/chipsalliance/rocket-chip-fpga-shells.git
+	url = ../../chipsalliance/rocket-chip-fpga-shells.git
 [submodule "tools/api-config-chipsalliance"]
 	path = tools/api-config-chipsalliance
-	url = https://github.com/chipsalliance/api-config-chipsalliance.git
+	url = ../../chipsalliance/api-config-chipsalliance.git
 [submodule "tools/rocket-dsp-utils"]
 	path = tools/rocket-dsp-utils
-	url = https://github.com/ucb-bar/rocket-dsp-utils
+	url = ../../ucb-bar/rocket-dsp-utils
 [submodule "generators/ibex"]
 	path = generators/ibex
-	url = https://github.com/ucb-bar/ibex-wrapper
+	url = ../../ucb-bar/ibex-wrapper
 [submodule "generators/fft-generator"]
 	path = generators/fft-generator
-	url = https://github.com/ucb-bar/FFTGenerator.git
+	url = ../../ucb-bar/FFTGenerator.git
 [submodule "toolchains/riscv-tools/riscv-tests"]
 	path = toolchains/riscv-tools/riscv-tests
-	url = https://github.com/riscv-software-src/riscv-tests.git
+	url = ../../riscv-software-src/riscv-tests.git
 [submodule "toolchains/riscv-tools/riscv-pk"]
 	path = toolchains/riscv-tools/riscv-pk
-	url = https://github.com/riscv-software-src/riscv-pk.git
+	url = ../../riscv-software-src/riscv-pk.git
 [submodule "toolchains/riscv-tools/riscv-openocd"]
 	path = toolchains/riscv-tools/riscv-openocd
-	url = https://github.com/riscv/riscv-openocd.git
+	url = ../../riscv/riscv-openocd.git
 [submodule "toolchains/riscv-tools/riscv-isa-sim"]
 	path = toolchains/riscv-tools/riscv-isa-sim
-	url = https://github.com/riscv-software-src/riscv-isa-sim.git
+	url = ../../riscv-software-src/riscv-isa-sim.git
 [submodule "toolchains/riscv-tools/riscv-tools-feedstock"]
 	path = toolchains/riscv-tools/riscv-tools-feedstock
-	url = https://github.com/ucb-bar/riscv-tools-feedstock.git
+	url = ../../ucb-bar/riscv-tools-feedstock.git
 [submodule "toolchains/esp-tools/esp-tools-feedstock"]
 	path = toolchains/esp-tools/esp-tools-feedstock
-	url = https://github.com/ucb-bar/esp-tools-feedstock.git
+	url = ../../ucb-bar/esp-tools-feedstock.git
 [submodule "toolchains/esp-tools/riscv-isa-sim"]
 	path = toolchains/esp-tools/riscv-isa-sim
-	url = https://github.com/ucb-bar/esp-isa-sim.git
+	url = ../../ucb-bar/esp-isa-sim.git
 [submodule "toolchains/esp-tools/riscv-pk"]
 	path = toolchains/esp-tools/riscv-pk
-	url = https://github.com/riscv-software-src/riscv-pk.git
+	url = ../../riscv-software-src/riscv-pk.git
 [submodule "toolchains/esp-tools/riscv-tests"]
 	path = toolchains/esp-tools/riscv-tests
-	url = https://github.com/ucb-bar/esp-tests.git
+	url = ../../ucb-bar/esp-tests.git
 [submodule "toolchains/libgloss"]
 	path = toolchains/libgloss
-	url = https://github.com/ucb-bar/libgloss-htif.git
+	url = ../../ucb-bar/libgloss-htif.git
 [submodule "generators/constellation"]
 	path = generators/constellation
-	url = https://github.com/ucb-bar/constellation.git
+	url = ../../ucb-bar/constellation.git
 [submodule "generators/mempress"]
 	path = generators/mempress
-	url = https://github.com/ucb-bar/mempress.git
+	url = ../../ucb-bar/mempress.git
