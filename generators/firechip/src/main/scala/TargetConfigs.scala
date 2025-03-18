@@ -331,3 +331,8 @@ class FireSimXtraLargeVortexConfig extends Config(
   new WithFireSimVortexTweaks ++
   new chipyard.XtraLargeVortexConfig
 )
+
+class FireSimSuperLargeVortexConfig extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.SuperLargeVortexConfig
+)
