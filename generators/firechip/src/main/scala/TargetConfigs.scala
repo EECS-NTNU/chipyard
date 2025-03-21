@@ -312,6 +312,16 @@ class FireSimVortexGPGPUConfig extends Config(
   new chipyard.VortexGPGPUConfig
 )
 
+class FireSimSuperSmallVortexConfig extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.SuperSmallVortexConfig
+)
+
+class FireSimXtraSmallVortexConfig extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.XtraSmallVortexConfig
+)
+
 class FireSimSmallVortexConfig extends Config(
   new WithFireSimVortexTweaks ++
   new chipyard.SmallVortexConfig
