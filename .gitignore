@@ -20,3 +20,7 @@ tags
 .#*
 first-clone-setup-fast-log
 *.uuid
+
+# Symlinked files from vortex-ntnu
+generators/vortex
+generators/chipyard/src/main/scala/config/VortexConfigs.scala
