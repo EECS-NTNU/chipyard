@@ -53,10 +53,10 @@ SIM_FILE_REQS += \
 
 ifdef BUILD_VORTEX
 SIM_FILE_REQS += \
-  $(VORTEX_ROOT)/sim/common/rvfloats.cpp \
+	$(VORTEX_ROOT)/sim/common/rvfloats.cpp \
 	$(VORTEX_ROOT)/sim/common/softfloat_ext.cpp \
-  $(VORTEX_ROOT)/hw/dpi/float_dpi.cpp \
-  $(VORTEX_ROOT)/hw/dpi/util_dpi.cpp \
+	$(VORTEX_ROOT)/hw/dpi/float_dpi.cpp \
+	$(VORTEX_ROOT)/hw/dpi/util_dpi.cpp \
 	$(VORTEX_ROOT)/hw/dpi/chipyard_util.cpp \
 	$(VORTEX_ROOT)/runtime/chipyard/vortex_ipc.h
 endif
