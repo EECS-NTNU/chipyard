@@ -346,3 +346,119 @@ class FireSimSuperLargeVortexConfig extends Config(
   new WithFireSimVortexTweaks ++
   new chipyard.SuperLargeVortexConfig
 )
+
+// Firesim configs with specific numbers of SMs and Clusters.
+
+class FireSimV1S1C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V1S1C
+)
+class FireSimV2S1C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V2S1C
+)
+class FireSimV4S1C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V4S1C
+)
+class FireSimV8S1C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V8S1C
+)
+class FireSimV16S1C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V16S1C
+)
+class FireSimV32S1C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V32S1C
+)
+class FireSimV1S2C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V1S2C
+)
+class FireSimV2S2C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V2S2C
+)
+class FireSimV4S2C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V4S2C
+)
+class FireSimV8S2C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V8S2C
+)
+class FireSimV16S2C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V16S2C
+)
+class FireSimV1S4C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V1S4C
+)
+class FireSimV2S4C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V2S4C
+)
+class FireSimV4S4C extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V4S4C
+)
+
+class FireSimV1S1C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V1S1C0L3
+)
+class FireSimV2S1C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V2S1C0L3
+)
+class FireSimV4S1C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V4S1C0L3
+)
+class FireSimV8S1C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V8S1C0L3
+)
+class FireSimV16S1C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V16S1C0L3
+)
+class FireSimV32S1C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V32S1C0L3
+)
+class FireSimV1S2C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V1S2C0L3
+)
+class FireSimV2S2C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V2S2C0L3
+)
+class FireSimV4S2C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V4S2C0L3
+)
+class FireSimV8S2C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V8S2C0L3
+)
+class FireSimV16S2C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V16S2C0L3
+)
+class FireSimV1S4C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V1S4C0L3
+)
+class FireSimV2S4C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V2S4C0L3
+)
+class FireSimV4S4C0L3 extends Config(
+  new WithFireSimVortexTweaks ++
+  new chipyard.V4S4C0L3
+)
